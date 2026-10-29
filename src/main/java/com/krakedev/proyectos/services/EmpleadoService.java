@@ -44,6 +44,7 @@ public class EmpleadoService {
 			empleado.setNombre(datos.getNombre());
 			empleado.setCargo(datos.getCargo());
 			empleado.setTareas(datos.getTareas());
+			empleado.setDepartamento(datos.getDepartamento());
 
 			return empleadoRepository.save(empleado);
 

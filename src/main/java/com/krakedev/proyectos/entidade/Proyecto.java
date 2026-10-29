@@ -14,11 +14,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-@Entity
+@Entity 
 @Table(name = "proyectos")
 public class Proyecto {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private int id;
 
 	@Column(nullable = false, length = 100)
@@ -30,8 +30,8 @@ public class Proyecto {
 	@Column(nullable = false)
 	private LocalDate fechaInicio;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "proyecto")
+	@JsonIgnore // Convierte el objeto a JSON, util para ocultar datos y evitar buches infinitos
+	@OneToMany(mappedBy = "proyecto") //Relacion de uno a muchos un objeto de esta clase tiene una lista de objetos de otra clase 
 	private List<Tarea> tareas = new ArrayList<>();
 
 	public Proyecto() {

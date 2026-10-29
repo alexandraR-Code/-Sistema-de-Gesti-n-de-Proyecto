@@ -78,6 +78,7 @@ public class TareaService {
 			tarea.setDescripcion(datos.getDescripcion());
 			tarea.setFechaLimite(datos.getFechaLimite());
 			tarea.setCostoEstimado(datos.getCostoEstimado());
+			tarea.setEstado(datos.getEstado());
 
 			return tareaRepository.save(tarea);
 

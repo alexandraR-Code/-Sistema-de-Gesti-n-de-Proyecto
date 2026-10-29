@@ -14,11 +14,12 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-@Entity
+@Entity // Marca la clase como un tabla de la base de datos.Cada obejto es igual a una
+// fila, cada atributo es una columna
 @Table(name = "tareas")
 public class Tarea {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id // Indica que esta es la clave primaria de la tabla
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // genera un Id automaticamente
 	private int id;
 
 	@Column(nullable = false, length = 200)
@@ -30,27 +31,33 @@ public class Tarea {
 	@Column(nullable = false)
 	private double costoEstimado;
 
-	@ManyToOne
-	@JoinColumn(name = "proyecto_id", nullable = false)
+	@ManyToOne // Relacion de muchos a uno, muchos objetos de esta clase pertenecen a un
+				// solo objeto de otra clase
+	@JoinColumn(name = "proyecto_id", nullable = false) // Creea columna Fk (foranea) que apunta a otra tabla
 	private Proyecto proyecto;
 
-	@ManyToMany
+	@ManyToMany // Relacion de muchos a muchos
+	// Crea una tabla intermedia entre dos entidades
 	@JoinTable(name = "tarea_empleados", joinColumns = @JoinColumn(name = "tarea_id"), inverseJoinColumns = @JoinColumn(name = "empleado_id"))
 
 	private List<Empleado> empleados;
+
+	@Column(name = "estado", nullable = true)
+	private String estado;
 
 	public Tarea() {
 		super();
 	}
 
 	public Tarea(String descripcion, LocalDate fechaLimite, double costoEstimado, Proyecto proyecto,
-			List<Empleado> empleados) {
+			List<Empleado> empleados, String estado) {
 		super();
 		this.descripcion = descripcion;
 		this.fechaLimite = fechaLimite;
 		this.costoEstimado = costoEstimado;
 		this.proyecto = proyecto;
 		this.empleados = empleados;
+		this.estado = estado;
 	}
 
 	public int getId() {
@@ -99,6 +106,14 @@ public class Tarea {
 
 	public void setEmpleados(List<Empleado> empleados) {
 		this.empleados = empleados;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 }

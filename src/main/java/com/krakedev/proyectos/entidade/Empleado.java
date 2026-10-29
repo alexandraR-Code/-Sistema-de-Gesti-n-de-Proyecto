@@ -29,15 +29,20 @@ public class Empleado {
 	@JsonIgnore
 	private List<Tarea> tareas;
 
+	@Column(name= "departamento", nullable = true)
+	private String departamento;
+
 	public Empleado() {
 		super();
 	}
 
-	public Empleado(String nombre, String cargo, List<Tarea> tareas) {
+	public Empleado(String nombre, String cargo, List<Tarea> tareas, String departamento) {
 		super();
 		this.nombre = nombre;
 		this.cargo = cargo;
 		this.tareas = tareas;
+		this.departamento = departamento;
+
 	}
 
 	public int getId() {
@@ -72,5 +77,12 @@ public class Empleado {
 		this.tareas = tareas;
 	}
 
-	
+	public String getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+
 }

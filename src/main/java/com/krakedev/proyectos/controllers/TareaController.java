@@ -89,4 +89,31 @@ public class TareaController {
 					.body("Error al eliminar la tarea : " + e.getMessage());
 		}
 	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<?> consultarTareaId(@PathVariable int id) {
+		try {
+			Tarea tarea = service.buscarPorId(id);
+			if (tarea == null) {
+				return ResponseEntity.notFound().build();
+			}
+			return ResponseEntity.ok(tarea);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Erro al consultar la tarea: " + e.getMessage());
+		}
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> eliminarPorId(@PathVariable int id) {
+		try {
+			if (!service.eliminar(id)) {
+				return ResponseEntity.notFound().build();
+			}
+			return ResponseEntity.noContent().build();
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.body("Error al eliminar por Id : " + e.getMessage());
+		}
+	}
 }
