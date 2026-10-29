@@ -1,0 +1,91 @@
+{
+  "info": {
+    "_postman_id": "fed8ccdd-6c1b-40eb-91a8-d9857662622c",
+    "name": "Proyectos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56718877",
+    "_collection_link": "https://go.postman.co/collection/56718877-fed8ccdd-6c1b-40eb-91a8-d9857662622c?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Empleados",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n   \"nombre\": \"Diana Rojas\",\r\n   \"cargo\": \"Desarrollador Senior\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/empleados",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "empleados"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Proyectos",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n   \"nombre\": \"E-Commerce Plataforma\",\r\n   \"descripcion\": \"Desarrollo del nuevo portal de ventas online\",\r\n   \"fechaInicio\": \"2026-05-20\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/proyectos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "proyectos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Tareas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Verificar",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    }
+  ]
+}
