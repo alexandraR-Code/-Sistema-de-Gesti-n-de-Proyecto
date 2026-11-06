@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,7 +28,8 @@ public class ProyectoController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> guardar(@RequestBody Proyecto proyecto) {
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> crearProyecto(@RequestBody Proyecto proyecto) {
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(proyecto));
 		} catch (Exception e) {
@@ -37,7 +39,8 @@ public class ProyectoController {
 	}
 
 	@GetMapping
-	public ResponseEntity<?> listar() {
+	@PreAuthorize("hasAnyRole('ADMIN','USER')")
+	public ResponseEntity<?> listarProyectos() {
 		try {
 			List<Proyecto> proyectos = service.listar();
 			return ResponseEntity.ok(proyectos);
@@ -76,7 +79,8 @@ public class ProyectoController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> eliminar(@PathVariable int id) {
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<?> eliminarProyecto(@PathVariable int id) {
 		try {
 			if (!service.eliminar(id)) {
 				return ResponseEntity.notFound().build();
